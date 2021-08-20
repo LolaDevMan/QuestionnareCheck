@@ -7,6 +7,7 @@ coordinates = []
 count = 0
 original = image.copy()
 result = image.copy()
+
 image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 lower = np.array([155,25,0])
 upper = np.array([179,255,255])
