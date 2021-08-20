@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import csv
 
-image = cv2.imread('Images/0001.jpg')
+image = cv2.imread('Images/0002.jpg')
 question = 1
 coordinates = []
 count = 0
@@ -50,5 +50,5 @@ file.close()
 
 image = cv2.resize(image, (800, 1000))
 
-cv2.imshow("Input Image", original)
+cv2.imshow("Input Image", image)
 cv2.waitKey()
