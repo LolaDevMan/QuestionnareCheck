@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import csv
 
-image = cv2.imread('example_page-0001.jpg')
+image = cv2.imread('Images/0001.jpg')
 question = 1
 coordinates = []
 count = 0
@@ -43,10 +43,6 @@ for i in coordinates:
     questions.append(q)
     q+=1
 with open('ans_scan.csv', 'a', newline='') as file:
-
-c=1
-arr=[]
-with open('ans_scan.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(questions)
     writer.writerow(options)
