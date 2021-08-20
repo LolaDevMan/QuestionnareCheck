@@ -1,5 +1,6 @@
 import numpy as np
 import cv2
+import csv
 
 image = cv2.imread('example_page-0001.jpg')
 question = 1
@@ -13,7 +14,6 @@ lower = np.array([155,25,0])
 upper = np.array([179,255,255])
 mask = cv2.inRange(image, lower, upper)
 result = cv2.bitwise_and(result, result, mask=mask)
-
 contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
 for pic, contour in enumerate(contours):
@@ -28,17 +28,25 @@ for pic, contour in enumerate(contours):
 
 coordinates = sorted(coordinates, key=lambda x:x[1])
 
-for i in coordinates:
-    if(850 <= i[0] < 970):
-        print('Question', question, 'Answer is Option 3')
-    
-    elif(970 <= i[0] < 1091):
-        print('Question', question, 'Answer is Option 2')
-    
-    elif(1091 <= i[0] < 1213):
-        print('Question', question, 'Answer is Option 1')
-    
-    question += 1
+print(coordinates)
+print("The number of ticks", count)
+c=1
+arr=[]
+with open('ans_scan.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(["QNo.", "Option"])
+    for i in coordinates:
+        if(850 <= i[0] < 970):
+            writer.writerow([c,3])
+        elif(970 <= i[0] < 1091):
+            writer.writerow([c,2])
+        elif(1091 <= i[0] < 1213):
+            writer.writerow([c,1])
+        c+=1
+
+file.close()
+
+image = cv2.resize(image, (800, 1000))
 
 cv2.imshow("Input Image", original)
 cv2.waitKey()
