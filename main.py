@@ -30,20 +30,22 @@ coordinates = sorted(coordinates, key=lambda x:x[1])
 
 print(coordinates)
 print("The number of ticks", count)
-c=1
-arr=[]
-with open('ans_scan.csv', 'w', newline='') as file:
+q=1
+questions = ["Qno."]
+options = ["Person 1"]
+for i in coordinates:
+    if(850 <= i[0] < 970): 
+        options.append(3)
+    elif(970 <= i[0] < 1091):
+        options.append(2)
+    elif(1091 <= i[0] < 1213):
+        options.append(1)
+    questions.append(q)
+    q+=1
+with open('ans_scan.csv', 'a', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow(["QNo.", "Option"])
-    for i in coordinates:
-        if(850 <= i[0] < 970):
-            writer.writerow([c,3])
-        elif(970 <= i[0] < 1091):
-            writer.writerow([c,2])
-        elif(1091 <= i[0] < 1213):
-            writer.writerow([c,1])
-        c+=1
-
+    writer.writerow(questions)
+    writer.writerow(options)
 file.close()
 
 image = cv2.resize(image, (800, 1000))
