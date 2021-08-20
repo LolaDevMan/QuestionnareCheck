@@ -3,8 +3,10 @@ import cv2
 
 image = cv2.imread('example_page-0001.jpg')
 # image = image[190:450, 10:1290]
+question = 1
 coordinates = []
 count = 0
+original = image.copy()
 result = image.copy()
 image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 lower = np.array([155,25,0])
@@ -12,7 +14,7 @@ upper = np.array([179,255,255])
 mask = cv2.inRange(image, lower, upper)
 result = cv2.bitwise_and(result, result, mask=mask)
 
-_, contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
 for pic, contour in enumerate(contours):
     area = cv2.contourArea(contour)
@@ -26,20 +28,21 @@ for pic, contour in enumerate(contours):
 
 coordinates = sorted(coordinates, key=lambda x:x[1])
 
-print(coordinates)
-print("The number of ticks", count)
-
 for i in coordinates:
     if(850 <= i[0] < 970):
-        print("Option 3\n")
+        print('Question', question, 'Answer is Option 3')
     
     elif(970 <= i[0] < 1091):
-        print("Option 2\n")
+        print('Question', question, 'Answer is Option 2')
     
     elif(1091 <= i[0] < 1213):
-        print("Option 1\n")
+        print('Question', question, 'Answer is Option 1')
+    
+    question += 1
 
-image = cv2.resize(image, (800, 1000))
+# image = cv2.resize(image, (800, 1000))
 
-cv2.imshow('image', image)
+# cv2.imshow('image', image)
+
+cv2.imshow("Input Image", original)
 cv2.waitKey()
