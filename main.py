@@ -28,8 +28,6 @@ for pic, contour in enumerate(contours):
 
 coordinates = sorted(coordinates, key=lambda x:x[1])
 
-print(coordinates)
-print("The number of ticks", count)
 c=1
 arr=[]
 with open('ans_scan.csv', 'w', newline='') as file:
