@@ -24,8 +24,20 @@ for pic, contour in enumerate(contours):
         coordinates.append([centre_x, centre_y])
         count += 1
 
+coordinates = sorted(coordinates, key=lambda x:x[1])
+
 print(coordinates)
 print("The number of ticks", count)
+
+for i in coordinates:
+    if(850 <= i[0] < 970):
+        print("Option 3\n")
+    
+    elif(970 <= i[0] < 1091):
+        print("Option 2\n")
+    
+    elif(1091 <= i[0] < 1213):
+        print("Option 1\n")
 
 image = cv2.resize(image, (800, 1000))
 
