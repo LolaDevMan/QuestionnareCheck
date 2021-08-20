@@ -20,16 +20,14 @@ for pic, contour in enumerate(contours):
         x, y, w, h = cv2.boundingRect(contour)
         cv2.rectangle(image, (x, y), (x + w, y + h), (25, 255, 255), 2)
         centre_x, centre_y = ((x * 2 + w) // 2, (y * 2 + h) // 2)
+        cv2.circle(image, (centre_x, centre_y), 1, (0, 250, 0), thickness=1)
         coordinates.append([centre_x, centre_y])
         count += 1
 
 print(coordinates)
 print("The number of ticks", count)
 
-result = cv2.resize(result, (360, 500))
 image = cv2.resize(image, (800, 1000))
 
-cv2.imshow('mask', mask)
-cv2.imshow('result', result)
 cv2.imshow('image', image)
 cv2.waitKey()
