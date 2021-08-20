@@ -3,10 +3,12 @@ import cv2
 import csv
 
 image = cv2.imread('example_page-0001.jpg')
-# image = image[190:450, 10:1290]
+question = 1
 coordinates = []
 count = 0
+original = image.copy()
 result = image.copy()
+
 image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 lower = np.array([155,25,0])
 upper = np.array([179,255,255])
@@ -46,5 +48,5 @@ file.close()
 
 image = cv2.resize(image, (800, 1000))
 
-cv2.imshow('image', image)
+cv2.imshow("Input Image", original)
 cv2.waitKey()
