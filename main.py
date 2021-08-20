@@ -43,6 +43,10 @@ for i in coordinates:
     questions.append(q)
     q+=1
 with open('ans_scan.csv', 'a', newline='') as file:
+
+c=1
+arr=[]
+with open('ans_scan.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(questions)
     writer.writerow(options)
