@@ -2,7 +2,6 @@ import numpy as np
 import cv2
 
 image = cv2.imread('example_page-0001.jpg')
-# image = image[190:450, 10:1290]
 question = 1
 coordinates = []
 count = 0
@@ -39,10 +38,6 @@ for i in coordinates:
         print('Question', question, 'Answer is Option 1')
     
     question += 1
-
-# image = cv2.resize(image, (800, 1000))
-
-# cv2.imshow('image', image)
 
 cv2.imshow("Input Image", original)
 cv2.waitKey()
