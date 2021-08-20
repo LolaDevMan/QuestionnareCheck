@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import csv
 
-image = cv2.imread('Images/0002.jpg')
+image = cv2.imread('Images/0001.jpg')
 question = 1
 coordinates = []
 count = 0
@@ -18,7 +18,7 @@ contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIM
 
 for pic, contour in enumerate(contours):
     area = cv2.contourArea(contour)
-    if area > 50:
+    if area > 70:
         x, y, w, h = cv2.boundingRect(contour)
         cv2.rectangle(image, (x, y), (x + w, y + h), (25, 255, 255), 2)
         centre_x, centre_y = ((x * 2 + w) // 2, (y * 2 + h) // 2)
