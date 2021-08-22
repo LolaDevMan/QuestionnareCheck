@@ -3,6 +3,8 @@ import cv2
 import csv
 import os
 
+from numpy.core.fromnumeric import resize
+
 path = "/home/jacob/Documents/Freelancing/QuestionnareCheck/Images"
 dir_list = os.listdir(path)
 for j in dir_list:
@@ -27,7 +29,7 @@ for j in dir_list:
 
     for pic, contour in enumerate(contours):
         area = cv2.contourArea(contour)
-        if area > 30:
+        if area > 50:
             x, y, w, h = cv2.boundingRect(contour)
             cv2.rectangle(image, (x, y), (x + w, y + h), (25, 255, 255), 2)
             centre_x, centre_y = ((x * 2 + w) // 2, (y * 2 + h) // 2)
@@ -39,9 +41,9 @@ for j in dir_list:
 
     lower_blue = np.array([100,150,0])
     upper_blue = np.array([140,255,255])
-    mask = cv2.inRange(image, lower_blue, upper_blue)
-    result = cv2.bitwise_and(result, result, mask=mask)
-    contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    mask_blue = cv2.inRange(image, lower_blue, upper_blue)
+    result = cv2.bitwise_and(result, result, mask=mask_blue)
+    contours, hierarchy = cv2.findContours(mask_blue, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
     for pic, contour in enumerate(contours):
         area = cv2.contourArea(contour)
@@ -68,4 +70,8 @@ for j in dir_list:
         writer = csv.writer(file)
         writer.writerow(questions)
         writer.writerow(options)
+
+image = cv2.resize(image, (900, 900))
+cv2.imshow("Result", image)
+cv2.waitKey()
 file.close()
