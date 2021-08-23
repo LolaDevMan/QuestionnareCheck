@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from numpy.lib.type_check import imag
 pixel = (20,60,80) 
-image_src = cv2.imread("Images/3.jpg")
+image_src = cv2.imread("New/1.jpg")
 image_src = cv2.resize(image_src, (800, 900))
 
 def pick_color(event,x,y,flags,param):

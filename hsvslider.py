@@ -62,7 +62,7 @@ cv2.putText(paintWindow, "RED", (420, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 
 cv2.putText(paintWindow, "YELLOW", (520, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (150, 150, 150), 2, cv2.LINE_AA)
 cv2.namedWindow('Paint', cv2.WINDOW_AUTOSIZE)
 
-frame = cv2.imread("New//1.jpg")  # primarycamera that's why  0 is used
+frame = cv2.imread("New/1.jpg")  # primarycamera that's why  0 is used
 frame = cv2.flip(frame, 1)  # to flip it again
 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)  # just to convert from BGR to HSV colorspace
 
@@ -179,10 +179,12 @@ for i in range(len(points)):
             cv2.line(paintWindow, points[i][j][k - 1], points[i][j][k], colors[i], 2)
 
 # Show all the windows
+frame = cv2.resize(frame, (900, 900))
+Mask = cv2.resize(Mask, (800, 800))
 cv2.imshow("Tracking", frame)
 cv2.imshow("Paint", paintWindow)
 cv2.imshow("mask", Mask)
-cv2.waitKey
+cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 
